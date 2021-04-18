@@ -1,0 +1,58 @@
+<h1>Template: switches</h1>
+<hr>
+<form action="" #myForm="ngForm">
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label" for="">Género</label>
+    <div class="col-sm-9">
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="genderRadio" id="flexRadioDefault1" value="M" required [(ngModel)]="people.gender">
+        <label class="form-check-label" for="flexRadioDefault1">
+          Masculino
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="genderRadio" id="flexRadioDefault2" value="F" required [(ngModel)]="people.gender">
+        <label class="form-check-label" for="flexRadioDefault2">
+          Femenino
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label" for="">Notificaciones</label>
+    <div class="col-sm-9">
+      <div class="form-check form-switch mt-2">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="notifications" [(ngModel)]="people.notifications">
+        <label class="form-check-label" for="flexSwitchCheckChecked">Quiero recibir notificaciones</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label" for="">Terminos y condiciones</label>
+    <div class="col-sm-9">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" name="terms" id="flexCheckDefault" [(ngModel)]="terms" required>
+        <label class="form-check-label" for="flexCheckDefault">
+          Default checkbox
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary float-end" [disabled]="myForm.invalid">Guardar</button>
+    </div>
+  </div>
+</form>
+
+<h2>Valores de formulario</h2>
+<pre>{{ myForm.value | json }}</pre>
+<br>
+<h2>Persona</h2>
+<pre>{{ people | json }}</pre>
+<br>
+<h2>Valid</h2>
+<pre>{{ myForm.valid }}</pre>
+<br>
+<pre>Condiciones</pre>

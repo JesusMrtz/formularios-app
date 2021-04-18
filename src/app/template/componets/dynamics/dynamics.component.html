@@ -1,0 +1,38 @@
+<h1>Template: <small>Dinámicos</small></h1>
+<hr>
+
+<form action="" #myForm="ngForm">
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label" for="">Nombre</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" name="name" placeholder="Nombre de la persona" required [ngModel]="person.name">
+      <span class="text-danger" *ngIf="myForm.controls.name?.invalid && myForm.controls.name?.touched">Este campo es obligatorio</span>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label" for="">Agregar</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input class="form-control" name="newGame" type="text" placeholder="Favoritos" [(ngModel)]="newGame">
+        <button class="btn btn-outline-primary" type="button" [disabled]="newGame.trim() === ''" (click)="addGame()">Agregar</button>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label" for="">Favoritos</label>
+    <div class="col-sm-9">
+      <div class="input-group mb-1" *ngFor="let game of person.favorite; let i = index">
+        <input class="form-control" type="text" name="favorite_{{ i }}" [(ngModel)]="game.name" required>
+        <button class="btn btn-outline-danger" (click)="delete(i)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <button class="btn btn-primary float-end" type="submit" (click)="save()" [disabled]="myForm.invalid">Guardar</button>
+      </div>
+    </div>
+</form>
+
+<span>Persona</span>
+<pre>{{ person | json }}</pre>

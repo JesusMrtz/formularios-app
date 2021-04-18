@@ -1,0 +1,48 @@
+<h1>Template: Básicos</h1>
+<hr>
+<div class="row">
+  <div class="col">
+    <form action="" autocomplete="off" (ngSubmit)="save()" #miForm="ngForm">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label" for="">Producto</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="text" name="product" [ngModel]="initialForm.product" placeholder="Nombre del producto" minlength="3" required>
+          <span class="text-danger"*ngIf="validProduct()">Debe tener al menos 3 caracteres</span>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label" for="">Precio</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="number"  name="price" [ngModel]="initialForm.price" placeholder="Precio del producto" required>
+          <span class="text-danger"*ngIf="validPrice()">El precio debe ser mayor a cero</span>
+        </div>
+      </div>
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label" for="">Existencias</label>
+        <div class="col-sm-9">
+          <input class="form-control" type="number"  name="exists" placeholder="Existencias producto" required [ngModel]="initialForm.exists" customMin [minimo]="0">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary float-end" type="submit" [disabled]="miForm.invalid">Guardar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <span>Valid</span>
+    <pre>{{ miForm.valid }}</pre>
+    <span>Pristine</span>
+    <pre>{{ miForm.pristine }}</pre>
+    <span>Touched</span>
+    <pre>{{ miForm.touched }}</pre>
+    <span>Value</span>
+    <pre>{{ miForm.value | json }}</pre>
+    <span>CustomDirective</span>
+    <pre>{{ miForm.controls.exists?.errors | json }}</pre>
+  </div>
+</div>

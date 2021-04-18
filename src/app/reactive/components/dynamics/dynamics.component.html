@@ -1,0 +1,44 @@
+<h1>Reactive: <small>Dinámicos</small></h1>
+<hr>
+
+<form action="" [formGroup]="myForm" (ngSubmit)="save()">
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label" for="">Nombre</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" placeholder="Nombre de la persona" formControlName="name">
+      <span class="text-danger" *ngIf="isFieldValid('name')">Este campo es obligatorio</span>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label" for="">Agregar</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input class="form-control"  type="text" placeholder="Favoritos" [formControl]="newFavorite">
+        <button class="btn btn-outline-primary" type="button" (keypress.enter)="addFavorite()" (click)="addFavorite()">Agregar</button>
+      </div>
+      <span class="text-danger" *ngIf="this.newFavorite.errors && this.newFavorite.touched">Este campo es obligatorio</span>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label" for="">Favoritos</label>
+    <div class="col-sm-9" formArrayName="favorites">
+      <div class="input-group mb-1" *ngFor="let favorite of favoritesArray.controls; let i = index">
+        <input class="form-control" type="text" [formControlName]="i">
+        <button class="btn btn-outline-danger" (click)="deleteFavorite(i)">Eliminar</button>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <button class="btn btn-primary float-end" type="submit">Guardar</button>
+      </div>
+    </div>
+</form>
+
+<span>Valid</span>
+<pre>{{ myForm.valid }}</pre>
+<span>Value</span>
+<pre>{{ myForm.value | json }}</pre>
+<span>Agregar juego</span>
+<pre>{{ newFavorite.valid }}</pre>
+<pre> {{ newFavorite.value |json }}</pre>
